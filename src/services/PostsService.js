@@ -38,8 +38,8 @@ class PostsService {
   }
 
   async deleteComment(commentId) {
-    await api.delete('api/comments/' + commentId._id)
-    // this.getComments(commentId.blog)
+    await api.delete('api/comments/' + commentId)
+    // this.getComments(commentId)
   }
 
   async deletePost(postId) {

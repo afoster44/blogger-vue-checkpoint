@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid bg-success">
     <form v-if="state.user.isAuthenticated">
       <div class="form-group">
         <label for="exampleInputEmail1">Blog Title</label>
@@ -13,7 +13,7 @@
         Submit
       </button>
     </form>
-    <div class="row">
+    <div class="row-flex">
       <Post v-for="post in state.posts" :key="post.id" :post="post" />
     </div>
   </div>
@@ -47,12 +47,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.home{
-  text-align: center;
-  user-select: none;
-  > img{
-    height: 200px;
-    width: 200px;
-  }
+.row-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 </style>

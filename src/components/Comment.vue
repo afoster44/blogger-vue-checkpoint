@@ -17,7 +17,7 @@
 
 <script>
 import { reactive } from '@vue/reactivity'
-import { Comment, computed } from '@vue/runtime-core'
+import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { postsService } from '../services/PostsService'
 export default {
@@ -25,14 +25,14 @@ export default {
   props: {
     comment: Object
   },
-  setup() {
+  setup(props) {
     const state = reactive({
       user: computed(() => AppState.user)
     })
     return {
       state,
       async deleteComment() {
-        postsService.deleteComment(Comment._id)
+        postsService.deleteComment(props.comment._id)
       }
     }
   },
