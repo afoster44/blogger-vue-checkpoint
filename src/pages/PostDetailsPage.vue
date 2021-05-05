@@ -2,7 +2,7 @@
   <div class="post-details-page container-fluid bg-success" v-if="state.activePost.creator">
     <div class="row">
       <div class="post col-md-10 col-sm-12 offset-md-1">
-        <div class="card border shadow bg-secondary">
+        <div class="card border border-info bg-secondary">
           <div class="card-body">
             <h5 class="card-title">
               {{ state.activePost.title }}
@@ -13,34 +13,34 @@
             <p class="card-text">
               {{ state.activePost.creator.email }}
             </p>
-            <div class="row">
-              <div class="col-4">
+            <div class="row mb-5">
+              <div class="col-sm-4">
                 <div class="row">
                   <div class="col-12 text-center">
                     <p>Click here to delete blog!</p>
                   </div>
                 </div>
-                <div class="row mb-5">
-                  <div class="col-12">
+                <div class="row">
+                  <div class="col-sm-12">
                     <button type="button" class="btn btn-danger btn-block" v-if="state.user.email === state.activePost.creator.email" @click="deletePost">
                       <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                   </div>
                 </div>
               </div>
-              <div class="col-4">
+              <div class="col-sm-4">
                 <div class="row">
-                  <div class="col-12 text-center">
+                  <div class="col-sm-12 text-center">
                     <p>Click here to make a comment!</p>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-12">
+                  <div class="col-sm-12">
                     <CreateCommentModal v-if="state.user.isAuthenticated" />
                   </div>
                 </div>
               </div>
-              <div class="col-4">
+              <div class="col-sm-4">
                 <div class="row">
                   <div class="col-12 text-center">
                     <p>Click here to edit blog!</p>
@@ -71,7 +71,11 @@
                 </form>
               </div>
             </div> -->
-            <Comment v-for="comment in state.comments" :key="comment._id" :comment="comment" />
+            <div class="row">
+              <div class="col-12">
+                <Comment v-for="comment in state.comments" :key="comment._id" :comment="comment" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

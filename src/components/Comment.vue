@@ -1,14 +1,20 @@
 <template>
-  <div class="comment col-12 border shadow" v-if="comment.creator">
-    <p>
-      {{ comment.body }}
-    </p>
-    <p>
+  <div class="comment col-12 border border-info mb-2 bg-success" v-if="comment.creator">
+    <div class="row">
+      <div class="col-md-11 col-sm-9">
+        <p class="text-danger">
+          {{ comment.body }}
+        </p>
+      </div>
+      <div class="col-md-1 col-sm-3">
+        <button type="button" class="btn btn-secondary" v-if="comment.creator.email === state.user.email" @click="deleteComment">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <p class="text-danger">
       {{ comment.creator.email }}
     </p>
-    <button type="button" class="btn btn-primary" v-if="comment.creator.email === state.user.email" @click="deleteComment">
-      Delete
-    </button>
   </div>
   <div v-else>
     loading...
@@ -41,5 +47,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 
 </style>
