@@ -20,9 +20,9 @@
                     <p>Click here to delete blog!</p>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row mb-5">
                   <div class="col-12">
-                    <button type="button" class="btn btn-primary btn-block" v-if="state.user.email === state.activePost.creator.email" @click="deletePost">
+                    <button type="button" class="btn btn-danger btn-block" v-if="state.user.email === state.activePost.creator.email" @click="deletePost">
                       <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                   </div>
@@ -53,7 +53,7 @@
                 </div>
               </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
               <div class="col">
                 <form v-if="state.user.email === state.activePost.creator.email">
                   <p>Edit Blog Below</p>
@@ -70,7 +70,7 @@
                   </button>
                 </form>
               </div>
-            </div>
+            </div> -->
             <Comment v-for="comment in state.comments" :key="comment._id" :comment="comment" />
           </div>
         </div>
