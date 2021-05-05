@@ -1,19 +1,25 @@
 <template>
   <div class="container-fluid bg-success">
-    <form v-if="state.user.isAuthenticated">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Blog Title</label>
-        <input type="text" class="form-control" aria-describedby="text" placeholder="Blog Title" v-model="state.newBlog.title">
+    <div class="row">
+      <div class="col-8 offset-2">
+        <!-- leaving this in a form because I don't really know how to fill the space with a modal...
+        I guess I could end up doing a whole heading and trying to figure out some kind of introduction. -->
+        <form v-if="state.user.isAuthenticated" class="text-center">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Blog Title</label>
+            <input type="text" class="form-control" aria-describedby="text" placeholder="Blog Title" v-model="state.newBlog.title">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Blog Body</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Blog Body" v-model="state.newBlog.body">
+          </div>
+          <button type="button" class="btn btn-info btn-block" @click="createBlog">
+            Submit
+          </button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Body</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Body" v-model="state.newBlog.body">
-      </div>
-      <button type="button" class="btn btn-primary" @click="createBlog">
-        Submit
-      </button>
-    </form>
-    <div class="row-flex">
+    </div>
+    <div class="row-flex mt-3">
       <Post v-for="post in state.posts" :key="post.id" :post="post" />
     </div>
   </div>

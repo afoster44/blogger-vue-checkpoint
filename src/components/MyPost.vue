@@ -1,12 +1,12 @@
 <template>
   <router-link :to="{name: 'PostDetailsPage', params: {id: myPost.id}}">
     <div class="my-post col-4">
-      <div class="card" style="width: 50vh;">
+      <div class="card bg-secondary" style="width: 60vh;">
         <div class="card-body">
-          <h5 class="card-title">
+          <h5 class="card-title text-info">
             {{ myPost.title }}
           </h5>
-          <p class="card-text">
+          <p class="card-text text-info">
             {{ myPost.creator.email }}
           </p>
         </div>
@@ -19,7 +19,10 @@
 export default {
   name: 'MyPost',
   props: {
-    myPost: Object
+    myPost: {
+      type: Object,
+      required: true
+    }
   },
   setup() {
     return {}
@@ -30,4 +33,7 @@ export default {
 
 <style lang="scss" scoped>
 
+.card {
+  margin-top: 2rem;
+}
 </style>

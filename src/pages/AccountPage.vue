@@ -1,11 +1,17 @@
 <template>
-  <div class="about text-center container">
+  <div class="about text-center container-fluid bg-success">
     <div class="row">
-      <h1>Welcome {{ state.account.name }}</h1>
-      <img class="rounded" :src="state.account.picture" alt="" />
-      <p>{{ state.account.email }}</p>
-      <!-- {{ state.posts }} -->
-      <MyPost v-for="post in state.posts" :key="post._id" :my-post="post" />
+      <div class="col-6">
+        <h1>Welcome {{ state.account.name }}</h1>
+        <img class="rounded" :src="state.account.picture" alt="" />
+        <p>{{ state.account.email }}</p>
+        <CreatePostModal />
+      </div>
+      <div class="col-6 overflow-auto" style="height: 80vh;">
+        <div class="row d-flex justify-content-center">
+          <MyPost v-for="post in state.posts" :key="post._id" :my-post="post" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -34,5 +40,10 @@ export default {
 <style scoped>
 img {
   max-width: 100px;
+}
+
+row {
+  height: 100vh;
+  overflow: auto;
 }
 </style>
