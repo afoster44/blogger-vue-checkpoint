@@ -12,14 +12,16 @@
           </div>
         </div>
         <div class="row bottom bg-info align-items-center">
-          <div class="col-6 offset-3">
+          <div class="col-6 inner-bottom offset-3">
             <CreatePostModal />
           </div>
         </div>
       </div>
       <div class="col-6 scroll overflow-auto" style="height: 80vh;">
         <div class="row">
-          <MyPost v-for="post in state.posts" :key="post._id" :my-post="post" />
+          <div class="col-12">
+            <MyPost v-for="post in state.posts" :key="post._id" :my-post="post" />
+          </div>
         </div>
       </div>
     </div>

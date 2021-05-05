@@ -1,9 +1,9 @@
 <template>
-  <div class="post-details-page" v-if="state.activePost.creator">
-    <div class="container">
+  <div class="post-details-page container-fluid" v-if="state.activePost.creator">
+    <div class="container-fluid">
       <div class="row">
         <div class="post col-12">
-          <div class="card border shadow" style="width: 18rem;">
+          <div class="card border shadow">
             <div class="card-body">
               <h5 class="card-title">
                 {{ state.activePost.title }}
@@ -63,10 +63,11 @@ import { reactive } from '@vue/reactivity'
 import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { postsService } from '../services/PostsService'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 export default {
   name: 'PostDetailsPage',
   setup() {
+    const router = useRouter()
     const route = useRoute()
     const state = reactive({
       activePost: computed(() => AppState.activePost),
@@ -91,6 +92,7 @@ export default {
       },
       async deletePost() {
         await postsService.deletePost(route.params.id)
+        router.push({ name: 'Home' })
       },
       async editPost() {
         await postsService.editPost(state.activePost, route.params.id)

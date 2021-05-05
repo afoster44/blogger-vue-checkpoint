@@ -31,8 +31,4 @@ export default {
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
-footer {
-  height: 4rem;
-}
-
 </style>
