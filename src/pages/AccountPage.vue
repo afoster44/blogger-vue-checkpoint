@@ -1,14 +1,24 @@
 <template>
   <div class="about text-center container-fluid bg-success">
     <div class="row">
-      <div class="col-6">
-        <h1>Welcome {{ state.account.name }}</h1>
-        <img class="rounded" :src="state.account.picture" alt="" />
-        <p>{{ state.account.email }}</p>
-        <CreatePostModal />
+      <div class="col-6 bg-danger">
+        <div class="row top">
+          <div class="col-12">
+            <h1>Welcome {{ state.account.name }}</h1>
+            <img class="rounded" :src="state.account.picture" alt="" />
+            <p class="mt-1">
+              Just a place to share how you feel
+            </p>
+          </div>
+        </div>
+        <div class="row bottom bg-info align-items-center">
+          <div class="col-6 offset-3">
+            <CreatePostModal />
+          </div>
+        </div>
       </div>
-      <div class="col-6 overflow-auto" style="height: 80vh;">
-        <div class="row d-flex justify-content-center">
+      <div class="col-6 scroll overflow-auto" style="height: 80vh;">
+        <div class="row">
           <MyPost v-for="post in state.posts" :key="post._id" :my-post="post" />
         </div>
       </div>
@@ -41,8 +51,15 @@ export default {
 img {
   max-width: 100px;
 }
+.top {
+  height: 50vh;
+}
 
-row {
+.bottom {
+  height: 50vh;
+}
+
+.scroll {
   height: 100vh;
   overflow: auto;
 }

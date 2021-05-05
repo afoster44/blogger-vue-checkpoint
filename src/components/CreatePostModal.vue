@@ -1,7 +1,7 @@
 <template>
   <div class="create-post-modal">
     <div class="create-vault-modal">
-      <i class="fa fa-plus btn btn-danger"
+      <i class="fa fa-plus btn btn-danger btn-block"
          aria-hidden="true"
          type="button"
          data-toggle="modal"
