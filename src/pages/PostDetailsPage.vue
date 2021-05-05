@@ -1,52 +1,77 @@
 <template>
-  <div class="post-details-page container-fluid" v-if="state.activePost.creator">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="post col-12">
-          <div class="card border shadow">
-            <div class="card-body">
-              <h5 class="card-title">
-                {{ state.activePost.title }}
-              </h5>
-              <p>
-                {{ state.activePost.body }}
-              </p>
-              <p class="card-text">
-                {{ state.activePost.creator.email }}
-              </p>
-
-              <form v-if="state.user.isAuthenticated">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Comment</label>
-                  <input type="text" class="form-control" aria-describedby="text" placeholder="Comment" v-model="state.newComment.body">
+  <div class="post-details-page container-fluid bg-success" v-if="state.activePost.creator">
+    <div class="row">
+      <div class="post col-md-10 col-sm-12 offset-md-1">
+        <div class="card border shadow bg-secondary">
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ state.activePost.title }}
+            </h5>
+            <p>
+              {{ state.activePost.body }}
+            </p>
+            <p class="card-text">
+              {{ state.activePost.creator.email }}
+            </p>
+            <div class="row">
+              <div class="col-4">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <p>Click here to delete blog!</p>
+                  </div>
                 </div>
-              </form>
-              <button type="button" class="btn btn-primary" v-if="state.user.email === state.activePost.creator.email" @click="deletePost">
-                Delete
-              </button>
-              <button type="button" class="btn btn-primary" v-if="state.user.isAuthenticated" @click="createComment">
-                Comment
-              </button>
-              <div class="row">
-                <div class="col">
-                  <form v-if="state.user.email === state.activePost.creator.email">
-                    <p>Edit Blog Below</p>
-                    <div class="form-group">
-                      <label for="bodyEdit">Title Edit</label>
-                      <input type="text" class="form-control" aria-describedby="text" placeholder="Body Edit" v-model="state.activePost.title">
-                    </div>
-                    <div class="form-group">
-                      <label for="bodyEdit">Body Edit</label>
-                      <input type="text" class="form-control" aria-describedby="text" placeholder="Body Edit" v-model="state.activePost.body">
-                    </div>
-                    <button type="button" class="btn btn-primary" v-if="state.user.isAuthenticated" @click="editPost">
-                      Edit
+                <div class="row">
+                  <div class="col-12">
+                    <button type="button" class="btn btn-primary btn-block" v-if="state.user.email === state.activePost.creator.email" @click="deletePost">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
-                  </form>
+                  </div>
                 </div>
               </div>
-              <Comment v-for="comment in state.comments" :key="comment._id" :comment="comment" />
+              <div class="col-4">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <p>Click here to make a comment!</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <CreateCommentModal v-if="state.user.isAuthenticated" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <p>Click here to edit blog!</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <EditBlogModal />
+                  </div>
+                </div>
+              </div>
             </div>
+            <div class="row">
+              <div class="col">
+                <form v-if="state.user.email === state.activePost.creator.email">
+                  <p>Edit Blog Below</p>
+                  <div class="form-group">
+                    <label for="bodyEdit">Title Edit</label>
+                    <input type="text" class="form-control" aria-describedby="text" placeholder="Body Edit" v-model="state.activePost.title">
+                  </div>
+                  <div class="form-group">
+                    <label for="bodyEdit">Body Edit</label>
+                    <input type="text" class="form-control" aria-describedby="text" placeholder="Body Edit" v-model="state.activePost.body">
+                  </div>
+                  <button type="button" class="btn btn-primary" v-if="state.user.isAuthenticated" @click="editPost">
+                    Edit
+                  </button>
+                </form>
+              </div>
+            </div>
+            <Comment v-for="comment in state.comments" :key="comment._id" :comment="comment" />
           </div>
         </div>
       </div>
@@ -88,7 +113,7 @@ export default {
     return {
       state,
       async createComment() {
-        postsService.createComment(state.newComment, route.params.id)
+        postsService.createComment(state.newComment)
       },
       async deletePost() {
         await postsService.deletePost(route.params.id)
