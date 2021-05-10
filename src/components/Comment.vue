@@ -29,7 +29,10 @@ import { postsService } from '../services/PostsService'
 export default {
   name: 'Comment',
   props: {
-    comment: Object
+    comment: {
+      type: Object,
+      required: true
+    }
   },
   setup(props) {
     const state = reactive({
